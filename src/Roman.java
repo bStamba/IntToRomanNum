@@ -1,66 +1,22 @@
+import java.util.HashMap;
+
 public class Roman {
 
     //Takes in an integer value, and then converts it to the roman numeral and returns the string.
     public String intToRoman(int num){
         String romanNum = "";
-        int val = num;
+        int tempNum = num;
+        int[] arr1 = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] arr2 = new String[]{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
-        while(val > 0){
-
-            if(val > 999){
-                val = val - 1000;
-                romanNum = romanNum + "M";
-            }
-            else if(val >= 900){
-                val = val - 900;
-                romanNum = romanNum + "CM";
-            }
-            else if(val > 499){
-                val = val - 500;
-                romanNum = romanNum + "D";
-            }
-            else if(val >= 400){
-                val = val - 400;
-                romanNum = romanNum + "CD";
-            }
-            else if(val > 99){
-                val = val - 100;
-                romanNum = romanNum + "C";
-            }
-            else if(val >= 90){
-                val = val - 90;
-                romanNum = romanNum + "XC";
-            }
-            else if(val > 49){
-                val = val - 50;
-                romanNum = romanNum + "L";
-            }
-            else if(val >= 40){
-                val = val - 40;
-                romanNum = romanNum + "XL";
-            }
-            else if(val > 9){
-                val = val - 10;
-                romanNum = romanNum + "X";
-            }
-            else if(val == 9){
-                val = val - 9;
-                romanNum = romanNum + "IX";
-            }
-            else if(val > 4){
-                val = val - 5;
-                romanNum = romanNum + "V";
-            }
-            else if(val == 4){
-                val = val - 4;
-                romanNum = romanNum + "IV";
-            }
-            else{
-                val = val - 1;
-                romanNum = romanNum + "I";
+        //Compare the int to each possible value, if the value of num is greater than or equal to the value
+        //in our integer array, then subtract it and add the corresponding String letter to our romanNum string.
+        for(int i = 0; i < arr1.length; i++){
+            while(tempNum >= arr1[i]){
+                romanNum = romanNum + arr2[i];
+                tempNum = tempNum - arr1[i];
             }
         }
-        System.out.println("Roman numeral for " + num + " is: " + romanNum);
         return romanNum;
     }
 }
